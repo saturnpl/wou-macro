@@ -9,10 +9,13 @@ def get_data():
 data = get_data()
 m = 31/int(data["ms"]) #m short for multiplier
 def main():
-    from paths.gto_can import gto_cannon
-    window_id = "0x04a00031"
-    subprocess.run(["wmctrl", "-i", "-a", window_id])
-    gto_cannon()
+    from main import save
+    if data["running"] == "0":
+        from paths.gto_can import gto_cannon
+        window_id = "0x04a00031"
+        subprocess.run(["wmctrl", "-i", "-a", window_id])
+        gto_cannon()
+        save("running", "1")
 
 # only need a variable if its in a loop
 def reset(fl):

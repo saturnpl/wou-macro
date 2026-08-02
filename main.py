@@ -9,7 +9,6 @@ from pynput.keyboard import Key, Listener
 root= None
 start_b = None
 stop_b = None
-#yo wassup
 
 def main():
     global root, start_b, stop_b
@@ -38,10 +37,10 @@ def main():
     tv.add("Tad Sync") 
     tv.add("Settings") 
 
-    start_b = ctk.CTkButton(root,text="start",width=30,command=lambda: threading.Thread(target=macro.main, daemon=True).start())
+    start_b = ctk.CTkButton(root,text="start(1)",width=30,command=lambda: threading.Thread(target=macro.main, daemon=True).start())
     start_b.place(y=270)
-    stop_b= ctk.CTkButton(root, text="stop",width=30,command=lambda: threading.Thread(target=restart, daemon=True).start())
-    stop_b.place(x=40,y=270)
+    stop_b= ctk.CTkButton(root, text="stop(2)",width=30,command=lambda: threading.Thread(target=restart, daemon=True).start())
+    stop_b.place(x=60,y=270)
 
     field_text = ctk.CTkLabel(master=tv.tab("Gather"), text="Field",fg_color="#333333",corner_radius=10,font=("bold", 13), text_color="#0A7199")
     field_text.place(x=0,y=0)
@@ -129,4 +128,5 @@ def save(key, value):
         json.dump(data, f, indent=4)
 
 if __name__ == '__main__':
+    save("running", "0")
     main()
