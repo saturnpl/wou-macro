@@ -2,7 +2,10 @@ import pyautogui as pa
 from time import sleep
 
 def gto_pine():
-    sleep(1)
+    from sub_macro.macro import write_log, check_pixel
+    from pattern.kettle import kettle
+    write_log("Going to Pine Tree.")
+    sleep(1.5)
     pa.press("e")
     pa.keyDown("d")
     pa.keyDown("s")
@@ -12,7 +15,10 @@ def gto_pine():
     sleep(0.1)
     pa.keyDown("space")
     pa.keyUp("space")
-    sleep(7)
+    while not check_pixel(1456, 703,41,38,38):
+            sleep(0.1)
     pa.keyUp("s")
-    sleep(9)
     pa.keyUp("d")
+    write_log("Arrived at Pine Tree.")
+    write_log("Starting kettle pattern.")
+    kettle()

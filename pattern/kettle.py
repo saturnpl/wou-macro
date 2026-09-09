@@ -1,6 +1,6 @@
 import pyautogui as pa
 from time import sleep
-sleep(2)
+from threading import Thread
 def kettle():
     from sub_macro.macro import get_data, swalk, twalk
     data = get_data()
@@ -13,11 +13,7 @@ def kettle():
     while True:
         swalk('a', 0.6)
         pa.press(',')
-        swalk('a', 1.2)
+        swalk('a', 0.6)
         pa.press('.')
         swalk('d',  0.8)
         swalk('w', 0.6)
-
-
-
-kettle()

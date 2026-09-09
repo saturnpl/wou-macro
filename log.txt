@@ -1,0 +1,54 @@
+[2026-09-09 00:16:35] Started main.py
+[2026-09-09 00:16:37] Started main.py
+[2026-09-09 00:16:39] Started macro...
+[2026-09-09 00:16:39] Checking if Sober is open or not...
+[2026-09-09 00:16:39] Running wmctrl...
+[2026-09-09 00:16:39] wmctrl finished.
+[2026-09-09 00:16:39] wmctrl output: 0x0260006b -1 wou Desktop Icons 1
+0x03400004  0 wou main.py - macro - Visual Studio Code
+0x04000004  0 wou Check Window ID Running - Brave
+0x04a00031  0 wou Sober
+0x02c0009f  0 N/A Wou's macro
+
+[2026-09-09 00:16:39] Sober is open.
+[2026-09-09 00:16:45] Going to cannon.
+[2026-09-09 00:16:49] Going to cannon.
+[2026-09-09 00:16:51] Found Cannon
+[2026-09-09 00:16:53] Going to Pine Tree.
+[2026-09-09 00:17:13] Arrived at Pine Tree.
+[2026-09-09 00:17:13] Starting kettle pattern.
+[2026-09-09 00:17:25] Started main.py
+[2026-09-09 00:21:47] Started main.py
+[2026-09-09 00:21:50] Started main.py
+[2026-09-09 00:21:51] Started macro...
+[2026-09-09 00:21:51] Checking if Sober is open or not...
+[2026-09-09 00:21:51] Running wmctrl...
+[2026-09-09 00:21:51] wmctrl finished.
+[2026-09-09 00:21:51] wmctrl output: 0x0260006b -1 wou Desktop Icons 1
+0x03400004  0 wou main.py - macro - Visual Studio Code
+0x04000004  0 wou Check Window ID Running - Brave
+0x04a00031  0 wou Sober
+0x02c0009f  0 N/A Wou's macro
+
+[2026-09-09 00:21:51] Sober is open.
+[2026-09-09 00:21:57] Going to cannon.
+[2026-09-09 00:22:01] Going to cannon.
+[2026-09-09 00:22:03] Found Cannon
+[2026-09-09 00:22:03] Going to Pine Tree.
+[2026-09-09 00:22:32] Started main.py
+[2026-09-09 00:23:10] Started main.py
+[2026-09-09 00:23:12] Started macro...
+[2026-09-09 00:23:12] Checking if Sober is open or not...
+[2026-09-09 00:23:12] Running wmctrl...
+[2026-09-09 00:23:12] wmctrl finished.
+[2026-09-09 00:23:12] wmctrl output: 0x0260006b -1 wou Desktop Icons 1
+0x03400004  0 wou main.py - macro - Visual Studio Code
+0x04000004  0 wou Check Window ID Running - Brave
+0x04a00031  0 wou Sober
+0x02c0009f  0 N/A Wou's macro
+
+[2026-09-09 00:23:12] Sober is open.
+[2026-09-09 00:23:18] Going to cannon.
+[2026-09-09 00:23:22] Going to cannon.
+[2026-09-09 00:23:24] Found Cannon
+[2026-09-09 00:23:24] Going to Pine Tree.

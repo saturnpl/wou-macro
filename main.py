@@ -3,8 +3,10 @@ import json
 from sub_macro import macro
 import threading
 import os
-from sub_macro.macro import get_data
+from sub_macro.macro import get_data, write_log
 from pynput.keyboard import Key, Listener
+from PIL import Image, ImageTk
+from datetime import datetime
 
 root= None
 start_b = None
@@ -12,12 +14,18 @@ stop_b = None
 
 def main():
     global root, start_b, stop_b
+    write_log("Started main.py")
     data = get_data()
     if data["warning"] == "1":
         warning()
     root = ctk.CTk()
     root.geometry("500x300")
     root.title("Wou's macro")
+
+    icon = Image.open("images/diamond_bee.png")
+    photo = ImageTk.PhotoImage(icon)
+
+    root.iconphoto(True,photo)
 
     time_var = ctk.StringVar(value=data["time"])
     url_var = ctk.StringVar(value=data["url"])
@@ -37,9 +45,9 @@ def main():
     tv.add("Tad Sync") 
     tv.add("Settings") 
 
-    start_b = ctk.CTkButton(root,text="start(1)",width=30,command=lambda: threading.Thread(target=macro.main, daemon=True).start())
+    start_b = ctk.CTkButton(root,text="start(f1)",width=30,command=lambda: threading.Thread(target=macro.main, daemon=True).start())
     start_b.place(y=270)
-    stop_b= ctk.CTkButton(root, text="stop(2)",width=30,command=lambda: threading.Thread(target=restart, daemon=True).start())
+    stop_b= ctk.CTkButton(root, text="stop(f2)",width=30,command=lambda: threading.Thread(target=restart, daemon=True).start())
     stop_b.place(x=60,y=270)
 
     field_text = ctk.CTkLabel(master=tv.tab("Gather"), text="Field",fg_color="#333333",corner_radius=10,font=("bold", 13), text_color="#0A7199")
