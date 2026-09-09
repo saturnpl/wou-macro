@@ -6,7 +6,6 @@ import os
 from sub_macro.macro import get_data, write_log
 from pynput.keyboard import Key, Listener
 from PIL import Image, ImageTk
-from datetime import datetime
 
 root= None
 start_b = None
@@ -80,6 +79,9 @@ def main():
     ms_var.trace_add("write", lambda *args:save_ms(ms_var))
     ms.place(x=235,y=40)
 
+    version = ctk.CTkLabel(master=root, text="0.3.2", font=("bold",20),fg_color="#333333",corner_radius=10,text_color="#0A7199")
+    version.place(relx=1.0,rely=1.0,anchor="se")
+
     root.mainloop()
 
 def listener():
@@ -109,6 +111,8 @@ def on_release(key):
         root.after(0, stop_b.invoke)
 
 def restart():
+    write_log("Stopped macro.")
+    save("running",0)
     os.system("pkill python && sleep 0.3 && python /home/wou/Documents/python/macro/main.py")
 
 def field_option(choice):

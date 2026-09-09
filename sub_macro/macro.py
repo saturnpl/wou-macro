@@ -3,6 +3,8 @@ import pyautogui as pa
 from json import load
 from time import sleep
 from datetime import datetime
+import tempfile
+import shutil
 
 now = datetime.now()
 timer_done = False
@@ -20,6 +22,7 @@ def main():
         from paths.gto_can import gto_cannon
         from paths.gto_hive import gto_hive
 
+        data["running"] = "1"
         window_id = get_sober_window()
         new_hive = False
 
@@ -38,9 +41,11 @@ def main():
 
             url = data["url"] or "https://www.roblox.com/games/1537690962/Bee-Swarm-Simulator"
 
+            profile = tempfile.mkdtemp(prefix="brave-temp-")
+
             browser=subprocess.Popen([
                 "brave-browser",
-                "--new-instance",
+                "--user-data-dir=" + profile,
                 "--new-window",
                 url
             ])
@@ -49,9 +54,15 @@ def main():
 
             browser.terminate()
 
+            try:
+                browser.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                browser.kill()
+                browser.wait()
+
+            shutil.rmtree(profile, ignore_errors=True)
             # Sober erneut suchen
             while window_id is None:
-                print("testing")
 
                 window_id = get_sober_window()
 
@@ -78,11 +89,9 @@ def main():
 
                 if not found:
                     if pixel == (50, 131, 255):
-                        print("found")
                         found = True
                 else:
                     if pixel != (50, 131, 255):
-                        print("no longer found")
                         break
             write_log("Bss has fully opnened. Collecting hive now.")
             gto_hive()
@@ -97,9 +106,6 @@ def get_sober_window():
         capture_output=True,
         text=True
     )
-
-    write_log("wmctrl finished.")
-    write_log(f"wmctrl output: {result.stdout}")
 
     for line in result.stdout.splitlines():
         if "Sober" in line:
@@ -126,17 +132,11 @@ def reset():
 
 def swalk(key,seconds):
     with pa.hold(key):
-        if int(data["ms"]) >= 1:
-            sleep(seconds*m)
-        else:
-            sleep(seconds/m)
+        sleep(seconds)
 def twalk(first_key,second_key,seconds):
     pa.keyDown(first_key)
     pa.keyDown(second_key)
-    if int(data["ms"]) >= 1:
-        sleep(seconds*m)
-    else:
-        sleep(seconds/m)
+    sleep(seconds)
     pa.keyUp(first_key)
     pa.keyUp(second_key)
 
