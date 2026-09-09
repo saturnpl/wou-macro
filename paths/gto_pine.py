@@ -17,10 +17,12 @@ def gto_pine():
         sleep(0.1)
         pa.keyDown("space")
         pa.keyUp("space")
-        while not check_pixel(1456, 703,41,38,38):
-                sleep(0.1)
+        sleep(5)
         pa.keyUp("s")
+        while not check_pixel(1831, 320,56, 52, 51):
+                sleep(0.1)
         pa.keyUp("d")
         write_log("Arrived at Pine Tree.")
         write_log("Starting kettle pattern.")
-        kettle()
+        if data["pattern"] == "Kettle":
+             kettle()

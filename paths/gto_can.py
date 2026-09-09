@@ -18,23 +18,12 @@ def gto_cannon():
             reset()
         while not at_cannon:
             sleep(0.3)
-            with pa.hold("w"):
-                pa.sleep(1.3*m)
+            swalk("w",1.3)
             sleep(0.4)
-            if data["hive_slot"] == '1':
-                swalk("d",0.8)
-            elif data["hive_slot"] == "2":
-                swalk("d",2)
-            elif data["hive_slot"] == "3":
-                swalk("d",3.6)
-            elif data["hive_slot"] == "4":
-                swalk("d",5)
-            elif data["hive_slot"] == "5":
-                swalk("d",5.5)
-            elif data["hive_slot"] == "6":
-                swalk("d",6.6)
-            else:
-                write_log("Game crashed because hive slot number was not set or doesn't exist.")
+            pa.keyDown("d")
+            while not check_pixel(1375, 419,8, 17, 24):
+                sleep(0.01)
+            pa.keyUp("d")
             sleep(0.3)
             write_log("Going to cannon.")
             pa.keyDown("d")

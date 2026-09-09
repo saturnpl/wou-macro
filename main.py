@@ -49,17 +49,17 @@ def main():
     stop_b= ctk.CTkButton(root, text="stop(f2)",width=30,command=lambda: threading.Thread(target=restart, daemon=True).start())
     stop_b.place(x=60,y=270)
 
-    field_text = ctk.CTkLabel(master=tv.tab("Gather"), text="Field",fg_color="#333333",corner_radius=10,font=("bold", 13), text_color="#0A7199")
-    field_text.place(x=0,y=0)
-    field = ctk.CTkOptionMenu(master=tv.tab("Gather"), values=["Pine Tree", "Blue Flower Field", "Bamboo"], font=("bold", 10), width=135,command=field_option)
-    field.pack(anchor="nw",padx=60)
+    field = ctk.CTkOptionMenu(master=tv.tab("Gather"), values=["Pine Tree", "Blue Flower Field", "Bamboo"], font=("bold", 13), width=145,command=field_option)
+    field.pack(anchor="nw")
     field.set(data["field"])
 
-    gathertime_text = ctk.CTkLabel(master=tv.tab("Gather"),text="Time",fg_color="#333333",corner_radius=10,font=("bold", 13), text_color="#0A7199")
-    gathertime_text.place(x=200)
     gathertime = ctk.CTkEntry(master=tv.tab("Gather"), width=43, textvariable= time_var)
     time_var.trace_add("write", lambda *args:save_time(time_var))
-    gathertime.place(x=260)
+    gathertime.place(x=235)
+
+    pattern = ctk.CTkOptionMenu(master=tv.tab("Gather"), values=["Kettle", "Bff", "Bmb"], font=("bold", 13), width=80,command=pattern_option)
+    pattern.set(data["pattern"])
+    pattern.place(x=150)
 
     url_text = ctk.CTkLabel(master=tv.tab("Settings"), text="Join link",fg_color="#333333",corner_radius=10,font=("bold", 13), text_color="#0A7199")
     url_text.place(x=0,y=0)
@@ -79,7 +79,7 @@ def main():
     ms_var.trace_add("write", lambda *args:save_ms(ms_var))
     ms.place(x=235,y=40)
 
-    version = ctk.CTkLabel(master=root, text="0.3.2", font=("bold",20),fg_color="#333333",corner_radius=10,text_color="#0A7199")
+    version = ctk.CTkLabel(master=root, text="0.3.3", font=("bold",20),fg_color="#333333",corner_radius=10,text_color="#0A7199")
     version.place(relx=1.0,rely=1.0,anchor="se")
 
     root.mainloop()
@@ -112,11 +112,14 @@ def on_release(key):
 
 def restart():
     write_log("Stopped macro.")
-    save("running",0)
+    save("running","1")
     os.system("pkill python && sleep 0.3 && python /home/wou/Documents/python/macro/main.py")
 
 def field_option(choice):
     save("field",choice)
+
+def pattern_option(choice):
+    save("pattern", choice)
 
 def hive_option(choice):
     save("hive_slot",choice)

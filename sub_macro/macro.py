@@ -3,8 +3,6 @@ import pyautogui as pa
 from json import load
 from time import sleep
 from datetime import datetime
-import tempfile
-import shutil
 
 now = datetime.now()
 timer_done = False
@@ -14,15 +12,14 @@ def get_data():
         data = load(f)
     return data
 data = get_data()
-m = 31/int(data["ms"]) #m short for multiplier
 def main():
+    from main import save
     write_log("Started macro...")
     write_log("Checking if Sober is open or not...")
+    save("running","0")
     if data["running"] == "0":
         from paths.gto_can import gto_cannon
-        from paths.gto_hive import gto_hive
-
-        data["running"] = "1"
+        from paths.colhive import colhive
         window_id = get_sober_window()
         new_hive = False
 
@@ -33,35 +30,21 @@ def main():
                 text=True
             )
             write_log("Sober is open.")
+            sleep(0.4)
+            reset()
             gto_cannon()
 
         else:
             write_log("Sober is not opened, opening it...")
             new_hive = True
 
-            url = data["url"] or "https://www.roblox.com/games/1537690962/Bee-Swarm-Simulator"
+            url = data["url"] or "roblox://experiences/start?placeId=1537690962"
 
-            profile = tempfile.mkdtemp(prefix="brave-temp-")
-
-            browser=subprocess.Popen([
-                "brave-browser",
-                "--user-data-dir=" + profile,
-                "--new-window",
+            subprocess.Popen([
+                "xdg-open",
                 url
             ])
 
-            sleep(4.5)
-
-            browser.terminate()
-
-            try:
-                browser.wait(timeout=5)
-            except subprocess.TimeoutExpired:
-                browser.kill()
-                browser.wait()
-
-            shutil.rmtree(profile, ignore_errors=True)
-            # Sober erneut suchen
             while window_id is None:
 
                 window_id = get_sober_window()
@@ -94,7 +77,7 @@ def main():
                     if pixel != (50, 131, 255):
                         break
             write_log("Bss has fully opnened. Collecting hive now.")
-            gto_hive()
+            colhive()
 
         gto_cannon()
 
@@ -128,7 +111,7 @@ def reset():
         pa.press("enter")
         sleep(3)
         pa.scroll(-100)
-    
+
 
 def swalk(key,seconds):
     with pa.hold(key):

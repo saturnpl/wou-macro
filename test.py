@@ -7,8 +7,8 @@ def s():
         r,g,b = pyautogui.pixel(x, y)
         print(f"rgb:{r,g,b}")
         print(f"pos:{x,y}")
-        sleep(2)
-        #with open("random.txt", 'a') as f:
+        sleep(1)
+        #with open("random2.txt", 'a') as f:
             #f.write(f"pos: {x,y}, rgb: {r,g,b}\n")
 
 #50 131 255
@@ -22,15 +22,15 @@ def w():
             if s.getpixel((x, y)) == color:
                 print("found")
 
-def d():
+def d(x,y,r,g,b):
     while True:
-        pixel = pyautogui.screenshot(region=(796, 70, 1, 1)).getpixel((0, 0))
+        pixel = pyautogui.screenshot(region=(x, y, 1, 1)).getpixel((0, 0))
         print("Actual:", pixel)
-        if pixel == (238, 238, 242):
+        if pixel == (r, g, b):
             print("found")
         else:
             print("not found")
-        sleep(0.5)
+        sleep(1)
 
 def color_exists(pos1, pos2, rgb):
     img = pyautogui.screenshot(
@@ -48,4 +48,10 @@ def color_exists(pos1, pos2, rgb):
         for y in range(img.height)
     )
 
+
+#pyautogui.moveTo(870, 72)
 s()
+#rgb:(247, 255, 249)
+#pos:(883, 90)
+#rgb:(247, 255, 249)
+#pos:(1075, 73)
