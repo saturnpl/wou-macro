@@ -19,4 +19,5 @@ def gto_hive():
             while not check_pixel(472,132, 115,115,115):
                  sleep(0.01)
             pa.keyUp("a")
+            pa.keyDown("w")
 gto_hive()

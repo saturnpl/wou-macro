@@ -1,5 +1,6 @@
 import pyautogui
 from time import sleep
+from sys import platform
 
 def s():
     while 1:
@@ -49,9 +50,4 @@ def color_exists(pos1, pos2, rgb):
     )
 
 
-#pyautogui.moveTo(870, 72)
-s()
-#rgb:(247, 255, 249)
-#pos:(883, 90)
-#rgb:(247, 255, 249)
-#pos:(1075, 73)
+print(platform)

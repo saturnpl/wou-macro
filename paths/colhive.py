@@ -2,12 +2,11 @@ import pyautogui as pa
 from time import sleep
 import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-sleep(3)
 def colhive():
-    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
     from sub_macro.macro import check_pixel, write_log, get_data, reset
-    from gto_can import gto_cannon
+    from .gto_can import gto_cannon
     data = get_data()
     if data["running"] == "0":
         print("going")

@@ -96,7 +96,6 @@ def get_sober_window():
 
     return None
 
-# only need a variable if its in a loop
 def reset():
     sleep(1)
     pa.scroll(-100)

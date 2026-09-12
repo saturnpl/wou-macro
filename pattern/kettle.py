@@ -3,6 +3,7 @@ from time import sleep
 from threading import Thread
 def kettle():
     from sub_macro.macro import get_data, swalk, twalk
+    from paths import gto_hive
     data = get_data()
     countdown_thread = Thread(target=countdown)
     countdown_thread.start()
@@ -13,12 +14,13 @@ def kettle():
         pa.mouseDown()
         sleep(0.5)
         while timer > 0:
-            swalk('a', 0.6)
             pa.press(',')
-            twalk("a","s",0.6)
+            swalk("a", 1.5)
             pa.press('.')
-            swalk('d',  1.25)
-            swalk('w', 0.6)
+            swalk('d',  1.2)
+            swalk('w', 0.9)
+        pa.press("shift")
+        gto_hive()
 
 def countdown():
     from sub_macro.macro import get_data
